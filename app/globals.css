@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bmo: #47CFB8;
+  --color-bmo-screen: #C7F5EE;
+  --color-marceline: #E03668;
+  --color-moss: #528561;
+  --color-cosmic: #1C2230;
+  --color-cassette: #FFF8EA;
+}
+
+html {
+  scroll-behavior: auto;
+  color: #1C2230;
+  background-color: #D8F0F3;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  color: #1C2230;
+  background-color: #D8F0F3;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom selection */
+::selection {
+  background-color: #E03668;
+  color: #FFFFFF;
+}
+
+/* Lo-fi CRT scanlines utility for retro screens */
+.crt-overlay {
+  background: linear-gradient(rgba(28, 34, 48, 0) 50%, rgba(28, 34, 48, 0.06) 50%);
+  background-size: 100% 4px;
+}
+
+/* Lo-fi subtle dot grid */
+.dot-grid {
+  background-image: radial-gradient(rgba(28, 34, 48, 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #D8F0F3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #47CFB8;
+  border-radius: 9999px;
+  border: 2px solid #D8F0F3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E03668;
+}
+
+/* Cloud drift */
+@keyframes cloudDriftSlow {
+  0% { transform: translateX(-15%); }
+  100% { transform: translateX(115vw); }
+}
+
+@keyframes cloudDriftMedium {
+  0% { transform: translateX(-25%); }
+  100% { transform: translateX(115vw); }
+}
+
+.animate-cloud-slow {
+  animation: cloudDriftSlow 80s linear infinite;
+}
+
+.animate-cloud-medium {
+  animation: cloudDriftMedium 60s linear infinite;
+}
+
+/* Focus styles for keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #E03668;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-cloud-slow,
+  .animate-cloud-medium {
+    animation: none !important;
+  }
+}
